@@ -70,7 +70,8 @@ class FileStorage:
         self.reload()
 
     def get(self, cls, id):
-        """Returns the object with the given ID and class."""
+        """Returns the object based on the class and
+        its ID, or None if not found"""
         if cls:
             for value in self.__objects.values():
                 if isinstance(value, cls) and value.id == id:
@@ -78,7 +79,8 @@ class FileStorage:
         return None
 
     def count(self, cls=None):
-        """Returns the number of objects in storage matching the given class."""
+        """Returns the number of objects in storage matching the given class.
+        If no class is passed, returns the count of all objects in storage."""
         if cls:
             counter = len(self.all(cls))
         else:
