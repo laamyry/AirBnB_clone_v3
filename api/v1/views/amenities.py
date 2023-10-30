@@ -23,7 +23,8 @@ def getAamenity(amenity_id):
     return json(amenity.to_dict())
 
 
-@views.route('/amenities/<amenity_id>', methods=['DELETE'], strict_slashes=False)
+@views.route('/amenities/<amenity_id>', methods=['DELETE'],
+             strict_slashes=False)
 def delete_amenity(amenity_id):
     """Deletes Amenity"""
     amenity = storage.get(Amenity, amenity_id)
@@ -47,7 +48,8 @@ def create_amenity():
     return json(new_amenity.to_dict()), 201
 
 
-@views.route('/amenities/<amenity_id>', methods=['PUT'], strict_slashes=False)
+@views.route('/amenities/<amenity_id>', methods=['PUT'],
+             strict_slashes=False)
 def update_amenity(amenity_id):
     """Updates Amenity"""
     amenity = storage.get(Amenity, amenity_id)
