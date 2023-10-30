@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""State objects that handles all default RESTFul API actions"""
+'''Status of your API'''
 from api.v1.views import app_views as views
 from models import storage
 from models.state import State
@@ -9,7 +9,7 @@ from flask import jsonify as json, abort, request
 @views.route("/states", strict_slashes=False, methods=["GET"])
 @views.route("/states/<state_id>", strict_slashes=False, methods=["GET"])
 def states(state_id=None):
-    """show states and states with id"""
+    """show states"""
     list_s = []
     if state_id is None:
         objs = storage.all(State).values()
@@ -37,7 +37,7 @@ def delete(state_id):
 
 @views.route("/states", strict_slashes=False, methods=["POST"])
 def create():
-    """create a new post req"""
+    """create new post"""
     data = request.get_json(force=True, silent=True)
     if not data:
         abort(400, "Not a JSON")
