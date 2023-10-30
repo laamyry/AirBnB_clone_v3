@@ -20,9 +20,9 @@ def getstats():
     stat = storage.count("State")
     user = storage.count("User")
 
-    stas = {
+    stats = {
         "amenities": amen, "cities": citi,
         "places": plac, "reviews": revi,
         "states": stat, "users": user}
 
-    return json(stas)
+    return json(stats)
