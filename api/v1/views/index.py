@@ -14,12 +14,13 @@ def getstatus():
 @views.route('/stats', methods=['GET'])
 def getstats():
     """stats"""
-    amen = storage.count("Amenity")
-    citi = storage.count("City")
-    plac = storage.count("Place")
-    revi = storage.count("Review")
-    stat = storage.count("State")
-    user = storage.count("User")
+    counter = storage.count
+    amen = counter("Amenity")
+    citi = counter("City")
+    plac = counter("Place")
+    revi = counter("Review")
+    stat = counter("State")
+    user = counter("User")
 
     stats = {
         "amenities": amen, "cities": citi,
