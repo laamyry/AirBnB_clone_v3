@@ -9,8 +9,8 @@ from models.city import City
 
 
 @views.route('/cities/<city_id>/places', methods=['GET'], strict_slashes=False)
-def getCityPlace(city_id):
-    """Retrieves list of all Places"""
+def get_city_places(city_id):
+    """Retrieves list of all Place"""
     city = storage.get(City, city_id)
     if city is None:
         abort(404)
@@ -19,7 +19,7 @@ def getCityPlace(city_id):
 
 
 @views.route('/places/<place_id>', methods=['GET'], strict_slashes=False)
-def getPlace(place_id):
+def get_place(place_id):
     """Retrieves Place"""
     place = storage.get(Place, place_id)
     if place is None:
@@ -27,8 +27,9 @@ def getPlace(place_id):
     return json(place.to_dict())
 
 
-@views.route('/places/<place_id>', methods=['DELETE'], strict_slashes=False)
-def deletePlace(place_id):
+@views.route('/places/<place_id>', methods=['DELETE'],
+             strict_slashes=False)
+def delete_place(place_id):
     """Deletes Place"""
     place = storage.get(Place, place_id)
     if place is None:
@@ -40,7 +41,7 @@ def deletePlace(place_id):
 
 @views.route('/cities/<city_id>/places', methods=['POST'],
              strict_slashes=False)
-def createPlace(city_id):
+def create_place(city_id):
     """Creates new Place"""
     city = storage.get(City, city_id)
     if city is None:
@@ -56,15 +57,16 @@ def createPlace(city_id):
     if 'name' not in data:
         return json({"error": "Missing name"}), 400
 
-    nPlace = Place(**data)
-    nPlace.city_id = city.id
-    nPlace.save()
-    return json(nPlace.to_dict()), 201
+    new_place = Place(**data)
+    new_place.city_id = city.id
+    new_place.save()
+    return json(new_place.to_dict()), 201
 
 
-@views.route('/places/<place_id>', methods=['PUT'], strict_slashes=False)
-def updatePlace(place_id):
-    """Updates a Place object"""
+@views.route('/places/<place_id>', methods=['PUT'],
+             strict_slashes=False)
+def update_place(place_id):
+    """Updates Place"""
     place = storage.get(Place, place_id)
     if place is None:
         abort(404)
