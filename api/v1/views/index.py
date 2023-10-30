@@ -10,7 +10,7 @@ def getstatus():
     """status"""
     return json({"status": "OK"})
 
-@views.route('/api/V1/stats', methods=['GET'], strict_slashes=False)
+@views.route('stats', methods=['GET'])
 def getstats():
     """stats"""
     amen = storage.count("Amenity")
