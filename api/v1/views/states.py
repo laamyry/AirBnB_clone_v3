@@ -10,12 +10,12 @@ from flask import jsonify as json, abort, request
 @views.route("/states/<state_id>", strict_slashes=False, methods=["GET"])
 def states(state_id=None):
     """show states and states with id"""
-    states_list = []
+    list_s = []
     if state_id is None:
-        all_objs = storage.all(State).values()
-        for v in all_objs:
-            states_list.append(v.to_dict())
-        return json(states_list)
+        objs = storage.all(State).values()
+        for val in objs:
+            list_s.append(val.to_dict())
+        return json(list_s)
     else:
         result = storage.get(State, state_id)
         if result is None:
@@ -25,7 +25,7 @@ def states(state_id=None):
 
 @views.route("/states/<state_id>", strict_slashes=False,
              methods=["DELETE"])
-def states_delete(state_id):
+def delete(state_id):
     """delete method"""
     obj = storage.get(State, state_id)
     if obj is None:
@@ -36,7 +36,7 @@ def states_delete(state_id):
 
 
 @views.route("/states", strict_slashes=False, methods=["POST"])
-def create_state():
+def create():
     """create a new post req"""
     data = request.get_json(force=True, silent=True)
     if not data:
@@ -49,7 +49,7 @@ def create_state():
 
 
 @views.route("/states/<state_id>", strict_slashes=False, methods=["PUT"])
-def update_state(state_id):
+def update(state_id):
     """update state"""
     obj = storage.get(State, state_id)
     if obj is None:
