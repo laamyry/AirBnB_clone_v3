@@ -11,7 +11,7 @@ def getstatus():
     return json({"status": "OK"})
 
 
-@views.route('/stats', methods=['GET'])
+@views.route('/stats', methods=['GET'], strict_slashes=False)
 def getstats():
     """stats"""
     counter = storage.count
@@ -23,8 +23,11 @@ def getstats():
     user = counter("User")
 
     stats = {
-        "amenities": amen, "cities": citi,
-        "places": plac, "reviews": revi,
-        "states": stat, "users": user}
+        "amenities": amen,
+        "cities": citi,
+        "places": plac,
+        "reviews": revi,
+        "states": stat,
+        "users": user}
 
     return json(stats)
