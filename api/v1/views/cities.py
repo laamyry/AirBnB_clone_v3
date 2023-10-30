@@ -5,7 +5,7 @@ from api.v1.views import app_views as views
 from models import storage
 from models.state import State
 from models.city import City
-from flask import jsonify as abort, request, json
+from flask import jsonify as json, abort, request
 
 
 @views.route("/states/<state_id>/cities", strict_slashes=False,
