@@ -10,6 +10,7 @@ def getstatus():
     """status"""
     return json({"status": "OK"})
 
+
 @views.route('/stats', methods=['GET'])
 def getstats():
     """stats"""

@@ -101,11 +101,11 @@ class TestFileStorage(unittest.TestCase):
     def test_count(self):
         """Test the count method of DBStorage"""
         storage = DBStorage()
-        st_count= storage.count(State)
+        st_count = storage.count(State)
         self.assertEqual(st_count, 0)
 
         nObjet1 = State(name="California")
         storage.new(nObjet1)
         storage.save()
-        st_count= storage.count(State)
+        st_count = storage.count(State)
         self.assertEqual(st_count, 1)
