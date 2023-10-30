@@ -8,7 +8,7 @@ from flask import jsonify as json, abort, request
 
 
 @views.route("/states/<state_id>/cities", strict_slashes=False,
-                 methods=["GET"])
+             methods=["GET"])
 def cities(state_id):
     """show cities"""
     list_c = []
@@ -42,7 +42,7 @@ def delete(city_id):
 
 
 @views.route("/states/<state_id>/cities", strict_slashes=False,
-                 methods=["POST"])
+             methods=["POST"])
 def create(state_id):
     """create new post"""
     state = storage.get(State, state_id)
